@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legia Foods</title>
+    <style>
+        /* Celkové tmavé pozadí */
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Moderní neonový nadpis */
+        h1 {
+            color: #00ffff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        /* Styl pro vyhledávací pole s neonovým textem */
+        #searchInput {
+            width: 60%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #333;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            color: #00ffff; /* Nastavení aqua barvy textu */
+            text-shadow: 0 0 5px #00ffff; /* Neonový efekt pro text */
+        }
+
+        #searchInput::placeholder {
+            color: #888;
+            text-shadow: none; /* Placeholder bez neonového efektu */
+        }
+
+        /* Tmavá, moderní tabulka s neonovými akcenty */
+        table {
+            width: 60%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #222;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: left;
+            color: #e0e0e0;
+        }
+
+        th {
+            background-color: #333;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2a2a2a;
+        }
+
+        tr:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Legia's Foods</h1>
+
+    <!-- Vyhledávací pole -->
+    <input type="text" id="searchInput" placeholder="Vyhledávejte v tabulce..." onkeyup="filterTable()">
+
+    <table id="foodsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Název</th>
+                <th>Původ</th>
+                <th>Cena</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% foods.forEach(food => { %>
+                <tr>
+                    <td><%= food.id_food %></td>
+                    <td><%= food.nazev %></td>
+                    <td><%= food.puvod %></td>
+                    <td><%= food.cena %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <script>
+        // Funkce pro filtrování tabulky
+        function filterTable() {
+            const input = document.getElementById("searchInput").value.trim().toLowerCase();
+            const table = document.getElementById("foodsTable");
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    const cellText = cells[j].textContent || cells[j].innerText;
+                    if (cellText.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>
