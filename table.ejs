@@ -3,122 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legia Foods</title>
+    <title>TabuLify</title>
     <style>
-        /* Celkové tmavé pozadí */
-        body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            font-family: Arial, sans-serif;
+      body {
+    background-color: #121212; /* Dark background */
+    font-family: 'Arial', sans-serif; /* Modern font */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background-image: linear-gradient(135deg, #121212, #2c2c2c); /* Dark gradient */
+}
+.button {
+    display: inline-block;
+    background-color: #ff4500;
+    color: #ffffff;
+    text-decoration: none; /* Zrušení podtržení odkazu */
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1em;
+    border: 2px solid #ff4500;
+    transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
             text-align: center;
-            margin: 0;
-            padding: 20px;
+            display: inline-block;
+            position: absolute;
+            top: 60px;  /* Vzdálenost od horního okraje */
+            left: 20px; /* Vzdálenost od levého okraje */
         }
 
-        /* Moderní neonový nadpis */
-        h1 {
-            color: #00ffff;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        .button:hover {
+            background-color: #ff8c00; /* Brighter orange on hover */
+    transform: scale(1.05);
         }
 
-        /* Styl pro vyhledávací pole s neonovým textem */
-        #searchInput {
-            width: 60%;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: #333;
-            border: 1px solid #00ffff;
-            border-radius: 5px;
-            color: #00ffff; /* Nastavení aqua barvy textu */
-            text-shadow: 0 0 5px #00ffff; /* Neonový efekt pro text */
+        .button:active {
+            transform: scale(0.95);
         }
 
-        #searchInput::placeholder {
-            color: #888;
-            text-shadow: none; /* Placeholder bez neonového efektu */
-        }
+h1, h2 {
+    text-transform: uppercase;
+    text-align: center;
+}
 
-        /* Tmavá, moderní tabulka s neonovými akcenty */
-        table {
-            width: 60%;
-            margin: 0 auto;
-            border-collapse: collapse;
-            background-color: #222;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-        }
+h1 {
+    color: #ff4500; /* Lava orange */
+    font-size: 2.5em;
+    text-shadow: 0 0 15px #ff4500, 0 0 20px #ff4500; /* Lava glow */
+}
 
-        th, td {
-            border: 1px solid #444;
-            padding: 12px;
-            text-align: left;
-            color: #e0e0e0;
-        }
+h2 {
+    color: #ff6347; /* Lava red */
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px #ff6347, 0 0 20px #ff6347; /* Red glow */
+}
 
-        th {
-            background-color: #333;
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
-        }
+ /* Existing styles */
+ form {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row; /* Arrange inputs horizontally in a row */
+        align-items: center; /* Vertically align items in the same line */
+        justify-content: center; /* Center horizontally */
+        width: 100%;
+        max-width: 1000px; /* Adjust the max-width as needed */
+        flex-wrap: nowrap; /* Prevent wrapping of the inputs */
+    }
 
-        tr:nth-child(even) {
-            background-color: #2a2a2a;
-        }
+    select, input, button {
+        padding: 12px;
+        margin: 10px;
+        width: auto; /* Allow inputs to take natural width */
+        min-width: 150px; /* Ensure minimum width */
+        max-width: 200px; /* Optional: limit width to avoid inputs being too wide */
+        background-color: #1a1a1a;
+        border: 2px solid #ff4500;
+        border-radius: 8px;
+        color: #ffffff;
+        font-size: 1em;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
 
-        tr:hover {
-            background-color: #333;
-        }
+    select:focus, input:focus {
+        border-color: #ff6347; /* Lava red on focus */
+        box-shadow: 0 0 10px #ff6347; /* Red glow on focus */
+    }
+
+    button {
+        background-color: #ff4500;
+        cursor: pointer;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: background-color 0.3s, transform 0.2s;
+        min-width: 150px; /* Optional: Set minimum width for the button */
+    }
+
+    button:hover {
+        background-color: #ff8c00; /* Brighter orange on hover */
+        transform: scale(1.05);
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+table {
+    width: 90%;
+    max-width: 900px;
+    border-collapse: collapse;
+    background-color: #1a1a1a; /* Dark background for table */
+    border: 2px solid #ff4500; /* Lava orange border */
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.7); /* Lava glow */
+    margin-top: 20px;
+}
+th{
+    padding: 8px;
+    text-align: center;
+    color: #ffffff;
+    border-bottom: 1px solid #ff4500; /* Lava orange border */
+}
+ td {
+    padding: 1px;
+    text-align: center;
+    color: #ffffff;
+    border-bottom: 1px solid #ff4500; /* Lava orange border */
+}
+
+th {
+    background-color: #121212;
+    text-shadow: 0 0 10px #ff4500; /* Lava glow for header */
+    font-size: 1.2em;
+}
+
+tr:nth-child(even) {
+    background-color: #141414;
+}
+
+tr:hover {
+    background-color: #1a1a1a;
+}
+
+.deleteButton {
+    background-color: #ff3b3b; /* Lava red for delete button */
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 160px;
+}
+
+.deleteButton:hover {
+    background-color: #ff6666; /* Lighter red on hover */
+}
+
+
     </style>
 </head>
 <body>
-    <h1>Legia's Foods</h1>
+    <a href="/home" class="button">Vytvořit novou tabulku</a>
 
-    <!-- Vyhledávací pole -->
-    <input type="text" id="searchInput" placeholder="Vyhledávejte v tabulce..." onkeyup="filterTable()">
+    <h1>Tabulka: <%= tableName %></h1>
 
-    <table id="foodsTable">
+    <h2>Dostupné tabulky:</h2>
+    <form action="/table/<%= tableName %>" method="GET">
+        <select name="tableName" onchange="this.form.action = '/table/' + this.value;">
+            <% tableNames.forEach(name => { %>
+                <option value="<%= name %>"><%= name %></option>
+            <% }); %>
+        </select>
+        <button type="submit">Zobrazit tabulku</button>
+    </form>
+    <h2>Přidejte zde nové záznamy!</h2>
+    <form action="/add/<%= tableName %>" method="POST" id="addForm" style="display: flex; justify-content: center; align-items: center; width: 100%; max-width: 400px; margin: 20px auto;" onsubmit="return checkDuplicateInputs(this);">
+        <% columns.forEach(column => { %>
+            <input type="text" name="<%= column %>" placeholder="<%= column.charAt(0).toUpperCase() + column.slice(1) %>" required style="flex: 1 1 auto; min-width: 150px; margin: 5px;" oninput="validateInput(this);">
+        <% }); %>
+        <button type="submit" style="flex: 0 0 auto; margin: 5px;">Přidat</button>
+    </form>
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Vyhledejte záznam..."
+        style="width: 300px; padding: 10px; margin: 10px auto; display: block;"
+    />
+    
+    <form action="/deleteTable" method="POST">
+        <input type="hidden" name="tableName" value="<%= tableName %>">
+        <button type="submit" class="deleteButton">Smazat tuto tabulku</button>
+    </form>
+
+    <table id="dynamicTable">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Název</th>
-                <th>Původ</th>
-                <th>Cena</th>
+                <% columns.forEach(column => { %>
+                    <% if (column !== 'id') { %>
+                        <th><%= column.charAt(0).toUpperCase() + column.slice(1) %></th>
+                    <% } %>
+                <% }); %>
+                <th>Úprava</th>
             </tr>
         </thead>
         <tbody>
-            <% foods.forEach(food => { %>
+            <% records.forEach(record => { %>
                 <tr>
-                    <td><%= food.id_food %></td>
-                    <td><%= food.nazev %></td>
-                    <td><%= food.puvod %></td>
-                    <td><%= food.cena %></td>
+                    <% columns.forEach(column => { %>
+                        <% if (column !== 'id') { %>
+                            <td><%= record[column] %></td>
+                        <% } %>
+                    <% }); %>
+                    <td>
+                        <form action="/delete/<%= tableName %>/<%= record.id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="deleteButton">Smazat</button>
+                        </form>
+                    </td>
                 </tr>
             <% }); %>
         </tbody>
     </table>
-
     <script>
-        // Funkce pro filtrování tabulky
-        function filterTable() {
-            const input = document.getElementById("searchInput").value.trim().toLowerCase();
-            const table = document.getElementById("foodsTable");
-            const rows = table.getElementsByTagName("tr");
+        // JavaScript pro vyhledávání
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase(); // Hodnota z inputu (malá písmena)
+            const rows = document.querySelectorAll('#dynamicTable tbody tr'); // Všechny řádky tabulky
+            
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByTagName('td')); // Získej všechny buňky v řádku
+                const matches = cells.some(cell => cell.textContent.toLowerCase().includes(filter)); // Hledání textu
+                
+                row.style.display = matches ? '' : 'none'; // Zobraz/Skryj řádek
+            });
+        });
+        // Funkce pro kontrolu speciálních znaků
+function validateInput(input) {
+    const regex = /^[a-zA-Zá-žÁ-Ž0-9\s]+$/; // Povolené znaky: česká diakritika, číslice a mezery
+    if (!regex.test(input.value)) {
+        alert("Vstup může obsahovat pouze českou klávesnici!1), číslice a mezery.");
+        input.value = ""; // Vymaže neplatný vstup
+    }
+}
 
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName("td");
-                let found = false;
 
-                for (let j = 0; j < cells.length; j++) {
-                    const cellText = cells[j].textContent || cells[j].innerText;
-                    if (cellText.toLowerCase().includes(input)) {
-                        found = true;
-                        break;
-                    }
-                }
+        // Kontrola na duplicitní názvy
+        function checkDuplicateInputs(form) {
+            const inputs = Array.from(form.querySelectorAll("input[type='text']"));
+            const values = inputs.map(input => input.value.trim().toLowerCase());
+            const duplicates = values.filter((value, index) => values.indexOf(value) !== index);
 
-                rows[i].style.display = found ? "" : "none";
+            if (duplicates.length > 0) {
+                alert("Názvy nesmí být duplicitní. Zkontrolujte svůj vstup.");
+                return false; // Zabrání odeslání formuláře
             }
+            return true; // Povolit odeslání formuláře
         }
     </script>
 </body>
