@@ -105,37 +105,6 @@
             margin-top: -10px;
         }
     </style>
-    <script>
-        function validateForm() {
-            const tableName = document.getElementById("table_name").value.trim();
-            const column1 = document.getElementById("column1").value.trim();
-            const column2 = document.getElementById("column2").value.trim();
-            const column3 = document.getElementById("column3").value.trim();
-
-            // Check if column names are unique
-            const columns = [column1, column2, column3];
-            const uniqueColumns = new Set(columns);
-
-            if (columns.length !== uniqueColumns.size) {
-                showError("Názvy sloupců musí být unikátní.");
-                return false;
-            }
-
-            // Check if table name matches any column name
-            if (columns.includes(tableName)) {
-                showError("Název tabulky nesmí být shodný s názvem sloupce.");
-                return false;
-            }
-
-            return true;
-        }
-
-        function showError(message) {
-            const errorMessage = document.getElementById("error-message");
-            errorMessage.innerText = message;
-            errorMessage.style.display = "block";
-        }
-    </script>
 </head>
 <body>
     <div class="container">
@@ -160,5 +129,52 @@
             <button type="submit">Vytvořit tabulku</button>
         </form>
     </div>
+    <script>
+        function validateForm() {
+            const tableName = document.getElementById("table_name").value.trim();
+            const column1 = document.getElementById("column1").value.trim();
+            const column2 = document.getElementById("column2").value.trim();
+            const column3 = document.getElementById("column3").value.trim();
+    
+            // Check if column names are unique
+            const columns = [column1, column2, column3];
+            const uniqueColumns = new Set(columns);
+    
+            if (columns.length !== uniqueColumns.size) {
+                showError("Názvy sloupců musí být unikátní!");
+                return false;
+            }
+    
+            // Check if table name matches any column name
+            if (columns.includes(tableName)) {
+                showError("Název tabulky nesmí být shodný s názvem sloupce!");
+                return false;
+            }
+    
+            // Check if table name contains numbers
+            if (/\d/.test(tableName)) {
+                showError("Název tabulky nesmí obsahovat čísla!");
+                return false;
+            }
+    
+            // Check if any column name contains numbers
+            for (const column of columns) {
+                if (/\d/.test(column)) {
+                    showError("Názvy sloupců nesmí obsahovat čísla!");
+                    return false;
+                }
+            }
+    
+            return true;
+        }
+    
+        function showError(message) {
+            const errorMessage = document.getElementById("error-message");
+            errorMessage.innerText = message;
+            errorMessage.style.display = "block";
+        }
+    </script>
+    
+    
 </body>
 </html>
