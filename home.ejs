@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vytvoření nové tabulky</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: #ffffff; /* White text */
+            font-family: 'Roboto', sans-serif; /* Modern font */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(135deg, #121212, #181818); /* Dark gradient background */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            border-radius: 15px;
+            background-color: #1f1f1f; /* Dark container */
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.3), 0 0 25px rgba(255, 69, 0, 0.3); /* Warm neon orange glow */
+        }
+
+        h1 {
+            color: #ff4500; /* Neon orange */
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500; /* Neon orange glow */
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #dcdcdc; /* Light grey text */
+            margin-bottom: 6px;
+            display: block;
+            text-align: left;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 14px;
+            margin: 10px 0;
+            width: 85%;
+            background-color: #2a2a2a;
+            border: 2px solid #444444; /* Darker grey for input borders */
+            border-radius: 10px;
+            color: #ffffff;
+            outline: none;
+            font-size: 1.1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+        }
+
+        input:focus {
+            border-color: #ff6347; /* Neon red on focus */
+            box-shadow: 0 0 12px #ff6347, inset 0 0 6px rgba(255, 99, 71, 0.2); /* Inner neon glow */
+        }
+
+        input::placeholder {
+            color: #808080; /* Light grey placeholder */
+        }
+
+        button {
+            padding: 14px;
+            width: 100%;
+            background-color: #d5290b; /* Neon red button */
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #ff8c00; /* Neon orange on hover */
+            transform: scale(1.05); /* Slight scale on hover */
+        }
+
+        button:active {
+            transform: scale(0.95); /* Button click effect */
+        }
+
+        .error-message {
+            color: #ff4500;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: -10px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const tableName = document.getElementById("table_name").value.trim();
+            const column1 = document.getElementById("column1").value.trim();
+            const column2 = document.getElementById("column2").value.trim();
+            const column3 = document.getElementById("column3").value.trim();
+
+            // Check if column names are unique
+            const columns = [column1, column2, column3];
+            const uniqueColumns = new Set(columns);
+
+            if (columns.length !== uniqueColumns.size) {
+                showError("Názvy sloupců musí být unikátní.");
+                return false;
+            }
+
+            // Check if table name matches any column name
+            if (columns.includes(tableName)) {
+                showError("Název tabulky nesmí být shodný s názvem sloupce.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function showError(message) {
+            const errorMessage = document.getElementById("error-message");
+            errorMessage.innerText = message;
+            errorMessage.style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Vytvořte si novou tabulku!</h1>
+
+        <p id="error-message" class="error-message" style="display: none;"></p>
+
+        <!-- Formulář pro vytvoření tabulky -->
+        <form id="createTableForm" action="/create-table" method="POST" onsubmit="return validateForm();">
+            <label for="table_name">Název tabulky:</label>
+            <input type="text" id="table_name" name="table_name" placeholder="Zadejte název tabulky" required>
+
+            <label for="column1">Název 1. sloupce:</label>
+            <input type="text" id="column1" name="column1" placeholder="Zadejte název sloupce" required>
+
+            <label for="column2">Název 2. sloupce:</label>
+            <input type="text" id="column2" name="column2" placeholder="Zadejte název sloupce" required>
+
+            <label for="column3">Název 3. sloupce:</label>
+            <input type="text" id="column3" name="column3" placeholder="Zadejte název sloupce" required>
+
+            <button type="submit">Vytvořit tabulku</button>
+        </form>
+    </div>
+</body>
+</html>
